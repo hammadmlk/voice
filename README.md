@@ -33,11 +33,23 @@ When Emilie addresses a concern, she wants it to reach everyone. She find that o
 # Tech Notes
 This is where I dump my thoughts on tech implementation.
 
+## Vocabulary
+Topic: Conversation subject.
+Voice: Think of it as a comment. 
+
+
 ## DB Scheme
 
+	Table: Topics
+		creator string | partition key
+		slug string | sort key
+		title string
+		timestamp string
+		lastupdated string
+
 	Table: Voices
-		theme string | partition key
-		sortkey string | sort key username+timestamp 
+		topicIdentifier string | partition key   (topicIdentifier = creator + slug)
+		voiceItentidier string | sort key  (voiceItentidier = speaker's username + timestamp)
 		
 		timestamp string 
 		username  string 
@@ -45,44 +57,56 @@ This is where I dump my thoughts on tech implementation.
 		detail string
 		upvotedBy arrayOfString | username
 		heardBy arrayOfString | username
-		supportingVoices arrayOfObject | {timestamp, username}
+		supportingVoices arrayOfObject | {voiceItentidier}
 		type string | primary or supporting
-
-	Table: Themes
-		createdby string | partition key
-		themeAlias string | sort key
-		theme string
-		timestamp string
-		lastupdated string
+		archived bool 
 
 
 ## URL Scheme
 	
-	/						homepage explaining the tool + list top N themes by lastupdated + create new button
-	/username 				list all themes of user by last updated + create new theme
-	/username/themeAlias    list all voices by creation date + add voice
+	/						homepage explaining the tool + list top N topics by lastupdated + create new button
+	/username 				list all topics of user by last updated + create new topic
+	/username/slug    		list all voices by creation date + add voice
+
+
+## Api
+
+	Create Topic  | username + slug
+	Get Topic  |  username + slug
+
+	Add Voice | topicIdentifier + username
+	Delete Voice  | topicIdentifier + voiceIdentifier
+
+	Mark Read  | topicIdentifier + voiceIdentifier + username
+
+	Add up-vote  |  topicIdentifier + voiceIdentifier + username
+	Remove up-vote  |  topicIdentifier + voiceIdentifier + username
+
+	Add supporting voice  topicIdentifier + voiceIdentifier + username
+	Remove supporting voice  topicIdentifier + voiceIdentifier
+
 
 
 ## Task list
 	- Setup Node/React env
 	- Create database tables
 
-	- Basic Theme feature
-		- add theme database controller
-		- get themes database controller 
-		- add theme react communicator
-		- get theme react communicator
-		- / page. See themes
-		- / page. Add theme + deal with optimistic add???
-		- /username page. See themes	
+	- Basic topic feature
+		- add topic database controller
+		- get topics database controller 
+		- add topic react communicator
+		- get topic react communicator
+		- / page. See topics
+		- / page. Add topic + deal with optimistic add???
+		- /username page. See topics	
 
 	- Basic Voices feature
 		- add voice database controller
 		- get voices database controller
 		- add voice react communicator
 		- get voices react communicator
-		- /username/themeAlias page. See voices
-		- /username/themeAlias page. Add voice
+		- /username/slug page. See voices
+		- /username/slug page. Add voice
 
 	- Delete Voice feature
 		- delete voice database controller
