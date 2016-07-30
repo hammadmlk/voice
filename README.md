@@ -142,3 +142,12 @@ Voice: Think of it as a comment.
 	- Sorting Voice feature
 		- do we need to do something on the backend for optimization?
 		- sorting UI
+
+
+# Setup
+  npm install
+  // Dev
+  npm run start
+  // Prod
+  npm run start:prod
+  

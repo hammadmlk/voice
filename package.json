@@ -1,0 +1,67 @@
+{
+  "name": "voice",
+  "version": "1.0.0",
+  "description": "a web application to share your voice on a topic",
+  "scripts": {
+    "start": "webpack -d --config ./tools/webpack.client.dev.babel.js && NODE_ENV=development node ./server",
+    "start:prod": "npm run clean && npm run build && NODE_ENV=production node ./build/server.js",
+    "build": "webpack -p --config ./tools/webpack.client.prod.babel.js && webpack -p --config ./tools/webpack.server.prod.babel.js",
+    "clean": "rm -rf build && rm -rf public/generated-assets",
+    "lint": "eslint client/. tools/. server/.; exit 0",
+    "lint:fix": "eslint --fix client/. --fix tools/. --fix server/.; exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hammadmlk/voice.git"
+  },
+  "keywords": [
+    "voice",
+    "communicate",
+    "collaborate",
+    "react",
+    "redux"
+  ],
+  "author": "Hammad Malik <hammadmlk@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hammadmlk/voice/issues"
+  },
+  "homepage": "https://github.com/hammadmlk/voice#readme",
+  "dependencies": {
+    "assets-webpack-plugin": "^3.4.0",
+    "immutable": "^3.8.1",
+    "react": "^15.0.1",
+    "react-dom": "^15.0.1",
+    "react-redux": "^4.4.2",
+    "react-router": "^2.0.1",
+    "react-router-redux": "^4.0.5",
+    "redux": "^3.4.0",
+    "redux-thunk": "^2.0.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.7.6",
+    "babel-eslint": "^6.0.0-beta.6",
+    "babel-loader": "^6.2.4",
+    "babel-plugin-transform-react-constant-elements": "^6.5.0",
+    "babel-plugin-transform-react-inline-elements": "^6.5.0",
+    "babel-preset-es2015": "^6.6.0",
+    "babel-preset-react": "^6.5.0",
+    "babel-preset-react-hmre": "^1.1.1",
+    "babel-preset-stage-0": "^6.5.0",
+    "css-loader": "^0.23.1",
+    "eslint": "^2.7.0",
+    "eslint-config-standard": "^5.1.0",
+    "eslint-plugin-promise": "^1.1.0",
+    "eslint-plugin-react": "^4.3.0",
+    "eslint-plugin-standard": "^1.3.2",
+    "html-webpack-plugin": "^2.22.0",
+    "react-hot-loader": "^1.3.0",
+    "standard": "^7.1.2",
+    "standard-loader": "^4.0.0",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.12.14",
+    "webpack-dev-middleware": "^1.6.1",
+    "webpack-dev-server": "^1.14.1",
+    "webpack-hot-middleware": "^2.12.2"
+  }
+}
