@@ -1,15 +1,16 @@
 import express from 'express'
+import socketio from './socketio'
 
 const __PROD__ = process.env.NODE_ENV === 'production'
 const __TEST__ = process.env.NODE_ENV === 'test'
 const PORT = process.env.PORT || 3000
 
-const server = express()
+const app = express()
 const router = express.Router()
 
 if (__PROD__ || __TEST__) {
   const config = require('../tools/webpack.client.prod.babel').default
-  server.use(config.output.publicPath, express.static(config.output.path))
+  app.use(config.output.publicPath, express.static(config.output.path))
 } else {
   const webpack = require('webpack')
   const webpackDevMiddleware = require('webpack-dev-middleware')
@@ -18,15 +19,16 @@ if (__PROD__ || __TEST__) {
 
   const compiler = webpack(config)
   const webpackMiddleware = webpackDevMiddleware(compiler, { quiet: true })
-  server.use(webpackMiddleware)
-  server.use(webpackHotMiddleware(compiler, {
+  app.use(webpackMiddleware)
+  app.use(webpackHotMiddleware(compiler, {
     log: console.warn,
     publicPath: config.output.publicPath,
     stats: {colors: true},
   }))
 }
 
-server.use(router)
-server.use(express.static('public'))
+app.use(router)
+app.use(express.static('public'))
 
-server.listen(PORT, () => console.log('listening on port: ' + PORT))
+const server = app.listen(PORT, () => console.log('listening on port: ' + PORT))
+socketio(server)

@@ -144,10 +144,15 @@ Voice: Think of it as a comment.
 		- sorting UI
 
 
-# Setup
-  npm install
-  // Dev
-  npm run start
-  // Prod
-  npm run start:prod
-  
+# DynamoDB Setup
+ - Setup AWS-SDK: https://aws.amazon.com/sdk-for-node-js/
+ - Review dynamoDB configurations in '.env' file
+ - If using local development dynamodb: https://aws.amazon.com/blogs/aws/dynamodb-local-for-desktop-development/
+ - More Help: http://docs.aws.amazon.com/amazondynamodb/latest/gettingstartedguide/GettingStarted.NodeJs.html
+
+# Dev Setup
+Prerequisite: DynamoDB Setup is complete. See section above.
+
+    npm install
+    npm run start
+

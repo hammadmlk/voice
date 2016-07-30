@@ -29,6 +29,9 @@
   "homepage": "https://github.com/hammadmlk/voice#readme",
   "dependencies": {
     "assets-webpack-plugin": "^3.4.0",
+    "aws-sdk": "^2.4.11",
+    "dotenv": "^2.0.0",
+    "express": "^4.14.0",
     "immutable": "^3.8.1",
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
@@ -36,7 +39,8 @@
     "react-router": "^2.0.1",
     "react-router-redux": "^4.0.5",
     "redux": "^3.4.0",
-    "redux-thunk": "^2.0.1"
+    "redux-thunk": "^2.0.1",
+    "socket.io": "^1.4.8"
   },
   "devDependencies": {
     "babel-core": "^6.7.6",
