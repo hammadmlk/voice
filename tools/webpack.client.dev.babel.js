@@ -5,7 +5,7 @@ import CONFIG from './webpack.base.babel'
 const { CLIENT_ENTRY, CLIENT_OUTPUT, PUBLIC_PATH, HTML_WEBPACK_PLUGIN } = CONFIG
 
 export default {
-  devtool: 'eval',
+  devtool: 'cheap-module-inline-source-map',
   entry: {
     main: [
       'webpack/hot/only-dev-server',
@@ -44,6 +44,13 @@ export default {
         loaders: ['react-hot', 'babel?' + JSON.stringify({cacheDirectory: true, presets: ['es2015', 'react', 'stage-0']})],
         exclude: /(node_modules|server)/,
       },
+      {
+        test: /\.scss$/,
+        loaders: ['style', 'css?sourceMap&modules&localIdentName=[name]__[local]___[hash:base64:5]', 'sass'],
+      },
     ],
+  },
+  resolve: {
+    root: CLIENT_ENTRY,
   },
 }

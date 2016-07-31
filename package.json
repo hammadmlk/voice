@@ -2,6 +2,7 @@
   "name": "voice",
   "version": "1.0.0",
   "description": "a web application to share your voice on a topic",
+  "main": "index.js",
   "scripts": {
     "start": "webpack -d --config ./tools/webpack.client.dev.babel.js && NODE_ENV=development node ./server",
     "start:prod": "npm run clean && npm run build && NODE_ENV=production node ./build/server.js",
@@ -29,14 +30,21 @@
   "homepage": "https://github.com/hammadmlk/voice#readme",
   "dependencies": {
     "assets-webpack-plugin": "^3.4.0",
+    "aws-sdk": "^2.4.11",
+    "babel-polyfill": "^6.9.1",
+    "bluebird": "^3.4.1",
+    "dotenv": "^2.0.0",
+    "express": "^4.14.0",
     "immutable": "^3.8.1",
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
     "react-redux": "^4.4.2",
     "react-router": "^2.0.1",
     "react-router-redux": "^4.0.5",
+    "react-toolbox": "^1.0.3",
     "redux": "^3.4.0",
-    "redux-thunk": "^2.0.1"
+    "redux-thunk": "^2.0.1",
+    "socket.io": "^1.4.8"
   },
   "devDependencies": {
     "babel-core": "^6.7.6",
@@ -55,11 +63,13 @@
     "eslint-plugin-react": "^4.3.0",
     "eslint-plugin-standard": "^1.3.2",
     "html-webpack-plugin": "^2.22.0",
+    "node-sass": "^3.8.0",
     "react-hot-loader": "^1.3.0",
+    "sass-loader": "^4.0.0",
     "standard": "^7.1.2",
     "standard-loader": "^4.0.0",
     "style-loader": "^0.13.1",
-    "webpack": "^1.12.14",
+    "webpack": "^1.13.1",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-dev-server": "^1.14.1",
     "webpack-hot-middleware": "^2.12.2"

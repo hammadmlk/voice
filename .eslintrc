@@ -17,6 +17,7 @@
   ],
   extends: ["eslint:recommended", "plugin:react/recommended", "standard"],
   "rules": {
+    "generator-star-spacing": 0, 
     "no-console": [1, {allow: ["warn", "error"]}],
     "comma-dangle" : [2, "always-multiline"],
     "semi": [2, "never"],
