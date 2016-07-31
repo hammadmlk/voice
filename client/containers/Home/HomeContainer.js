@@ -1,9 +1,12 @@
 import React from 'react'
+import FontIcon from 'react-toolbox/lib/font_icon'
 
 const HomeContainer = React.createClass({
   render () {
     return (
-      <p> {'Home'}</p>
+      <section>
+        <FontIcon value='home'/>
+      </section>
     )
   },
 })
