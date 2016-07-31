@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react'
+import { main } from './style.scss'
 
 const MainContainer = React.createClass({
   propTypes: {
@@ -6,7 +7,7 @@ const MainContainer = React.createClass({
   },
   render () {
     return (
-      <div className='MainContainer'>
+      <div className={main}>
         {this.props.children}
       </div>
     )

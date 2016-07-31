@@ -60,6 +60,13 @@ export default {
         },
         exclude: /(node_modules)/,
       },
+      {
+        test: /\.scss$/,
+        loaders: ['style', 'css?sourceMap&modules&localIdentName=[name]__[local]___[hash:base64:5]', 'sass'],
+      },
     ],
+  },
+  resolve: {
+    root: CLIENT_ENTRY,
   },
 }
