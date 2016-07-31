@@ -88,60 +88,59 @@ Voice: Think of it as a comment.
 
 
 ## Task list
-	- Setup Node/React env
-	- Create database tables
+  - [ ] Setup Node/React env
+  - [ ] Create database tables
 
-	- Basic topic feature
-		- add topic database controller
-		- get topics database controller 
-		- add topic react communicator
-		- get topic react communicator
-		- / page. See topics
-		- / page. Add topic + deal with optimistic add???
-		- /username page. See topics	
+  - [ ] Basic topic feature
+    - [ ] add topic database controller
+    - [ ] get topics database controller 
+    - [ ] add topic react communicator
+    - [ ] get topic react communicator
+    - [ ] / page. See topics
+    - [ ] / page. Add topic + deal with optimistic add???
+    - [ ] /username page. See topics	
 
-	- Basic Voices feature
-		- add voice database controller
-		- get voices database controller
-		- add voice react communicator
-		- get voices react communicator
-		- /username/slug page. See voices
-		- /username/slug page. Add voice
+  - [ ] Basic Voices feature
+    - [ ] add voice database controller
+    - [ ] get voices database controller
+    - [ ] add voice react communicator
+    - [ ] get voices react communicator
+    - [ ] /username/slug page. See voices
+    - [ ] /username/slug page. Add voice
 
-	- Delete Voice feature
-		- delete voice database controller
-		- delete voice react communicator
-		- delete voice UI
+    - [ ] Delete Voice feature
+    - [ ] delete voice database controller
+    - [ ] delete voice react communicator
+    - [ ] delete voice UI
 
-	- Upvote Voices feature
-		- upvote database controller
-		- upvote react communicator
-		- upvote UI
+  - [ ] Upvote Voices feature
+    - [ ] upvote database controller
+    - [ ] upvote react communicator
+    - [ ] upvote UI
 
-	- Voice Heard Feature
-		- mark as heard database controller
-		- mark as heard react communicator
-		- heard UI
-		- heard auto detector based on scroll
+  - [ ] Voice Heard Feature
+    - [ ] mark as heard database controller
+    - [ ] mark as heard react communicator
+    - [ ] heard UI
+    - [ ] heard auto detector based on scroll
 
-	- Auto username feature 
-		- openID integration so we can get username automatically
-		- readonly support for those without ID
+  - [ ] Auto username feature 
+    - [ ] openID integration so we can get username automatically
+    - [ ] readonly support for those without ID
 
-	- Supporting voice feature
-		- add supporting voice database controller
-		- add supporting voice react communicator 
-		- add supporting voice UI
+  - [ ] Supporting voice feature
+    - [ ] add supporting voice database controller
+    - [ ] add supporting voice react communicator 
+    - [ ] add supporting voice UI
 
-	- Create node database controller to add and retrieve data
-		- add supporting voice
-		- delete voice
-	- Create react database communicator to talk to node database controller	
+  - [ ] Create node database controller to add and retrieve data
+    - [ ] add supporting voice
+    - [ ] delete voice
+  - [ ] Create react database communicator to talk to node database controller	
 	
-
-	- Sorting Voice feature
-		- do we need to do something on the backend for optimization?
-		- sorting UI
+  - [ ] Sorting Voice feature
+    - [ ] do we need to do something on the backend for optimization?
+    - [ ] sorting UI
 
 
 # DynamoDB Setup
