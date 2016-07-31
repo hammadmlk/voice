@@ -8,13 +8,19 @@ export default function attach (server) {
 
   // Listen for events and call relevant handlers
   ioServer.on('connection', function (socket) {
-    socket.on('create topic', (data) => {
-      createTopic()
+    socket.on('create topic', ({username, slug, title}, ackFunc) => {
+      createTopic(username, slug, title)
+      .then((res) => ackFunc(res))
+      .catch((err) => ackFunc(err))
     })
 
-    socket.on('delete topic', (data) => {
-      deleteTopic()
+    socket.on('delete topic', ({username, slug}, ackFunc) => {
+      deleteTopic(username, slug)
+      .then((res) => ackFunc(res))
+      .catch((err) => ackFunc(err))
     })
+
+    socket.on('error', (err) => console.error(err))
   })
 
   return ioServer

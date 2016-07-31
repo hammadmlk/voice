@@ -145,13 +145,16 @@ Voice: Think of it as a comment.
 
 
 # DynamoDB Setup
- - Setup AWS-SDK: https://aws.amazon.com/sdk-for-node-js/
- - Review dynamoDB configurations in '.env' file
- - If using local development dynamodb: https://aws.amazon.com/blogs/aws/dynamodb-local-for-desktop-development/
- - More Help: http://docs.aws.amazon.com/amazondynamodb/latest/gettingstartedguide/GettingStarted.NodeJs.html
+Edit dynamoDB configurations in '.env' file so they points to a valid DB.
+
+NOTE: For a better development experience you can setup a local dynamoDB instance. See: https://aws.amazon.com/blogs/aws/dynamodb-local-for-desktop-development/
+
+Once the '.env' file points to a valid dynamoDB, initialize required tables
+
+    node ./server/databaseHandlers/initializer
 
 # Dev Setup
-Prerequisite: DynamoDB Setup is complete. See section above.
+Prerequisite: DynamoDB Setup. See section above.
 
     npm install
     npm run start

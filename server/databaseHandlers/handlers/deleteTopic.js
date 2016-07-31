@@ -1,7 +1,28 @@
-import dbClient from '../dbClient'
+import document from '../dbClient'
+import {TOPICS_TABLE_NAME, TOPICS_PARTITION_KEY, TOPICS_SORT_KEY} from '../constants'
 
-dbClient
+/*
+  deleteTopic() removes the topic from database
+  username: creator's username
+  slug: the slug of the topic
+  return: ???
+  error: ???
+  FIXME: define a response/error standard that is used by all socket events on server and client
+ */
+function deleteTopic (username, slug) {
+  // The item we want to delete from db
+  const key = { }
+  key[TOPICS_PARTITION_KEY] = username
+  key[TOPICS_SORT_KEY] = slug
 
-// TODO: delete the topic by calling  dbClient
+  const params = {
+    TableName: TOPICS_TABLE_NAME,
+    Key: key,
+  }
 
-export default () => (console.log('deleteTopic'))
+  return document.delete(params).promise()
+  .then(() => 'success')
+  .catch((err) => err)
+}
+
+export default deleteTopic

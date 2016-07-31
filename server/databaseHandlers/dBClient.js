@@ -1,13 +1,14 @@
 import AWS from 'aws-sdk'
-
-const DYNAMODB_REGION = process.env.DYNAMODB_REGION
-const DYNAMODB_ENDPOINT = process.env.DYNAMODB_ENDPOINT
+import bluebird from 'bluebird'
+import {DYNAMODB_REGION, DYNAMODB_ENDPOINT} from './constants'
 
 AWS.config.update({
   region: DYNAMODB_REGION,
   endpoint: DYNAMODB_ENDPOINT,
+  setPromisesDependency: bluebird,
 })
 
-const dbClient = new AWS.DynamoDB.DocumentClient()
+export const dynamodb = new AWS.DynamoDB()
 
-export default dbClient
+export default new AWS.DynamoDB.DocumentClient()
+
