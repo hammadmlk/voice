@@ -88,8 +88,8 @@ Voice: Think of it as a comment.
 
 
 ## Task list
-  - [ ] Setup Node/React env
-  - [ ] Create database tables
+  - [x] Setup Node/React env
+  - [x] Create database tables
 
   - [ ] Basic topic feature
     - [ ] add topic database controller
