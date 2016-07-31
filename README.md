@@ -90,6 +90,7 @@ Voice: Think of it as a comment.
 ## Task list
   - [x] Setup Node/React env
   - [x] Create database tables
+  - [x] Integrate with a material-ui module. (choose http://react-toolbox.com/)
 
   - [ ] Basic topic feature
     - [ ] add topic database controller
