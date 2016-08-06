@@ -91,6 +91,7 @@ Voice: Think of it as a comment.
   - [x] Setup Node/React env
   - [x] Create database tables
   - [x] Integrate with a material-ui module. (choose http://react-toolbox.com/)
+  - [x] Setup redux
 
   - [ ] Basic topic feature
     - [ ] add topic database controller
