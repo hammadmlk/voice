@@ -8,6 +8,11 @@ import thunk from 'redux-thunk'
 import { checkIfAuthed } from 'helpers/authenticator'
 import { routerReducer, syncHistoryWithStore } from 'react-router-redux'
 import { hashHistory } from 'react-router'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import injectTapEventPlugin from 'react-tap-event-plugin'
+
+// Needed by Material-ui. http://www.material-ui.com/#/get-started/installation
+injectTapEventPlugin()
 
 const store = createStore(
   combineReducers({...reducers, routing: routerReducer}),
@@ -30,7 +35,9 @@ function checkAuth (nextState, replace) {
 
 ReactDOM.render(
   <Provider store={store}>
-    {getRoutes(checkAuth, history)}
+    <MuiThemeProvider>
+      {getRoutes(checkAuth, history)}
+    </MuiThemeProvider>
   </Provider>,
   document.getElementById('app')
 )
