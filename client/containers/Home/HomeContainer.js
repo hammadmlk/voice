@@ -1,11 +1,11 @@
 import React from 'react'
-import FontIcon from 'react-toolbox/lib/font_icon'
+import FontIcon from 'material-ui/FontIcon'
 
 const HomeContainer = React.createClass({
   render () {
     return (
       <section>
-        <FontIcon value='home'/>
+        <FontIcon className='material-icons'>{'home'}</FontIcon>
       </section>
     )
   },
