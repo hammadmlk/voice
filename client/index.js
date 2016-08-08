@@ -8,7 +8,7 @@ import thunk from 'redux-thunk'
 import { checkIfAuthed } from 'helpers/authenticator'
 import { routerReducer, syncHistoryWithStore } from 'react-router-redux'
 import { hashHistory } from 'react-router'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 
 // Needed by Material-ui. http://www.material-ui.com/#/get-started/installation
