@@ -1,13 +1,13 @@
 import document from '../dbClient'
+import { logError } from '../errorUtils'
 import {TOPICS_TABLE_NAME, TOPICS_PARTITION_KEY, TOPICS_SORT_KEY} from '../constants'
 
 /*
-  deleteTopic() removes the topic from database
-  username: creator's username
-  slug: the slug of the topic
-  return: ???
-  error: ???
-  FIXME: define a response/error standard that is used by all socket events on server and client
+  Removes the topic from database
+  username: {String} creator's username
+  slug: {String} the slug of the topic
+  return: {String} 'success'
+  error: {String} the error message
  */
 function deleteTopic (username, slug) {
   // The item we want to delete from db
@@ -22,7 +22,10 @@ function deleteTopic (username, slug) {
 
   return document.delete(params).promise()
   .then(() => 'success')
-  .catch((err) => err)
+  .catch((err) => {
+    logError(err)
+    return 'Unable to delete topic.'
+  })
 }
 
 export default deleteTopic

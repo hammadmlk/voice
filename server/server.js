@@ -30,5 +30,5 @@ if (__PROD__ || __TEST__) {
 app.use(router)
 app.use(express.static('public'))
 
-const server = app.listen(PORT, () => console.log('listening on port: ' + PORT))
+const server = app.listen(PORT, () => console.info('listening on port: ' + PORT))
 socketio(server)

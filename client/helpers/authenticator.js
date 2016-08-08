@@ -13,5 +13,5 @@ export function checkIfAuthed (store) {
 }
 
 export function logout () {
-  console.log('Logged Out!')
+  console.info('Logged Out!')
 }

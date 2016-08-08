@@ -1,16 +1,16 @@
 import document from '../dbClient'
+import { logError } from '../errorUtils'
 import {TOPICS_TABLE_NAME, TOPICS_PARTITION_KEY, TOPICS_SORT_KEY,
         TOPICS_TITLE_KEY, TOPICS_TIMESTAMP_KEY, TOPICS_LASTUPDATED_KEY} from '../constants'
 
 /**
-  createTopic() adds the topic to database
+  Adds the topic to database. Throws error if the topic already exist.
 
-  @param {String} username : creator's username
-  @param {String} slug : the slug of the topic
-  @param {String} title : The topic name (can be empty)
-  @return: ???
-  @error: ???
-  FIXME: define a response/error standard that is used by all socket events on server and client
+  username : {String} creator's username
+  slug : {String} the slug of the topic
+  title : {String} The topic name (can be empty)
+  return: {String} 'success'
+  error: {String} the error message
  */
 function createTopic (username, slug, title = undefined) {
   // The item we want to add to db
@@ -24,11 +24,15 @@ function createTopic (username, slug, title = undefined) {
   const params = {
     TableName: TOPICS_TABLE_NAME,
     Item: item,
+    ConditionExpression: `attribute_not_exists(${TOPICS_PARTITION_KEY}) and attribute_not_exists(${TOPICS_SORT_KEY})`,
   }
 
   return document.put(params).promise()
   .then(() => 'success')
-  .catch((err) => err)
+  .catch((err) => {
+    logError(err)
+    return 'Unable to create topic. Is the slug already taken?'
+  })
 }
 
 export default createTopic
