@@ -94,12 +94,12 @@ Voice: Think of it as a comment.
   - [x] Setup redux
 
   - [ ] Basic topic feature
-    - [ ] add topic database controller
+    - [x] add topic database controller
     - [ ] get topics database controller 
-    - [ ] add topic react communicator
+    - [x] add topic react communicator
     - [ ] get topic react communicator
     - [ ] / page. See topics
-    - [ ] / page. Add topic + deal with optimistic add???
+    - [x] / page. Add topic (no optimistic adding)
     - [ ] /username page. See topics	
 
   - [ ] Basic Voices feature
