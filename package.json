@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack -d --config ./tools/webpack.client.dev.babel.js && NODE_ENV=development node ./server",
-    "start:prod": "npm run clean && npm run build && NODE_ENV=production node ./build/server.js",
+    "start:prod": "npm run clean && npm run build && NODE_ENV=production node -r dotenv/config ./build/server.js",
     "build": "webpack -p --config ./tools/webpack.client.prod.babel.js && webpack -p --config ./tools/webpack.server.prod.babel.js",
     "clean": "rm -rf build && rm -rf public/generated-assets",
     "lint": "eslint client/. tools/. server/.; exit 0",
