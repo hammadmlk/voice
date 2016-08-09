@@ -1,8 +1,7 @@
 import React from 'react'
 import { Router, Route, IndexRoute } from 'react-router'
 import { MainContainer, HomeContainer, AuthenticateContainer,
-         CreateTopicDialogContainer } from 'containers'
-import { TopicPage } from 'components'
+         CreateTopicDialogContainer, TopicPageContainer } from 'containers'
 
 export default function getRoutes (checkAuth, history) {
   return (
@@ -11,7 +10,7 @@ export default function getRoutes (checkAuth, history) {
         <IndexRoute component={HomeContainer} onEnter={checkAuth} />
         <Route path='authenticate' component={AuthenticateContainer} />
         <Route path='createTopic' component={CreateTopicDialogContainer} onEnter={checkAuth} />
-        <Route path=':username/:slug' component={TopicPage} onEnter={checkAuth} />
+        <Route path=':username/:slug' component={TopicPageContainer} onEnter={checkAuth} />
       </Route>
     </Router>
   )
