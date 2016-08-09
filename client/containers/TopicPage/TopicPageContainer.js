@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { GridContainer, GridRow, GridColumn } from 'components'
+import { GridCan, GridRow, GridColumn } from 'components'
 
 const TopicPageContainer = React.createClass({
   propTypes: {
@@ -7,7 +7,7 @@ const TopicPageContainer = React.createClass({
   },
   render () {
     return (
-      <GridContainer>
+      <GridCan>
         <GridRow>
           <GridColumn s={12} m={4}>
             {'TopicContainer Will Go Here'}
@@ -16,7 +16,7 @@ const TopicPageContainer = React.createClass({
             {'VoicesContainer Will Go Here'}
           </GridColumn>
         </GridRow>
-      </GridContainer>
+      </GridCan>
     )
   },
 })
