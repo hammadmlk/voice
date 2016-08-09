@@ -4,7 +4,7 @@ export default function authenticator () {
     setTimeout(() => resolve({
       name: 'Hammad Malik',
       username: 'hammadm',
-    }), 2000)
+    }), 200)
   })
 }
 
