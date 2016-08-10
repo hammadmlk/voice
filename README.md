@@ -37,6 +37,8 @@ This is where I dump my thoughts on tech implementation.
 Topic: Conversation subject.
 Voice: Think of it as a comment. 
 
+creator: Username of the creator of a topic
+slug: a url friendly identifier for a topic. Together, creator and slug uniquely identify any topic.
 
 ## DB Scheme
 
@@ -65,16 +67,16 @@ Voice: Think of it as a comment.
 ## URL Scheme
 	
 	/						homepage explaining the tool + list top N topics by lastupdated + create new button
-	/username 				list all topics of user by last updated + create new topic
-	/username/slug    		list all voices by creation date + add voice
+	/creator 				list all topics of user by last updated + create new topic
+	/creator/slug    		list all voices by creation date + add voice
 
 
 ## Api
 
-	Create Topic  | username + slug
-	Get Topic  |  username + slug
+	Create Topic  | creator + slug
+	Get Topic  |  creator + slug
 
-	Add Voice | topicIdentifier + username
+	Add Voice | topicIdentifier + speaker's username
 	Delete Voice  | topicIdentifier + voiceIdentifier
 
 	Mark Read  | topicIdentifier + voiceIdentifier + username
@@ -82,7 +84,7 @@ Voice: Think of it as a comment.
 	Add up-vote  |  topicIdentifier + voiceIdentifier + username
 	Remove up-vote  |  topicIdentifier + voiceIdentifier + username
 
-	Add supporting voice  topicIdentifier + voiceIdentifier + username
+	Add supporting voice  topicIdentifier + voiceIdentifier + speaker's username
 	Remove supporting voice  topicIdentifier + voiceIdentifier
 
 
@@ -95,20 +97,23 @@ Voice: Think of it as a comment.
 
   - [ ] Basic topic feature
     - [x] add topic database controller
+    - [X] get topic database controller
     - [ ] get topics database controller 
     - [x] add topic react communicator
-    - [ ] get topic react communicator
+    - [x] get topic react communicator
     - [ ] / page. See topics
-    - [x] / page. Add topic (no optimistic adding)
-    - [ ] /username page. See topics	
+    - [x] / page. Add topic modal
+    - [ ] / page.
+    - [ ] /creator page. See topics
 
   - [ ] Basic Voices feature
     - [ ] add voice database controller
     - [ ] get voices database controller
     - [ ] add voice react communicator
     - [ ] get voices react communicator
-    - [ ] /username/slug page. See voices
-    - [ ] /username/slug page. Add voice
+    - [x] /creator/slug page. See topic info
+    - [ ] /creator/slug page. See voices
+    - [ ] /creator/slug page. Add voice
 
     - [ ] Delete Voice feature
     - [ ] delete voice database controller

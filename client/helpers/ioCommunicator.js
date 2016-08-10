@@ -3,17 +3,21 @@ import io from 'socket.io-client'
 const socket = io()
 
 // Emit the event/data and return a promise that resolves when an ack is received
-// the ackData recieved is expected to be a string
+// ack is expected to be of form {error: {string} , data: {object}}
 function emitPromise (event, data) {
   return new Promise((resolve, reject) => {
     socket.emit(
       event,
       data,
-      (ackData) => (ackData === 'success' ? resolve(ackData) : reject(ackData))
+      (ack) => (ack.error === null ? resolve(ack.data) : reject(ack.error))
     )
   })
 }
 
-export function createTopic (username, slug, title) {
-  return emitPromise('create topic', {username, slug, title})
+export function createTopic (creator, slug, title) {
+  return emitPromise('create topic', {creator, slug, title})
+}
+
+export function getTopic (creator, slug) {
+  return emitPromise('get topic', {creator, slug})
 }
