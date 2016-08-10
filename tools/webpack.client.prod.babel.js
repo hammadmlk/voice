@@ -56,7 +56,7 @@ export default {
         query: {
           cacheDirectory: true,
           presets: ['es2015', 'react', 'stage-0'],
-          plugins: ['transform-react-constant-elements', 'transform-react-inline-elements'],
+          plugins: ['transform-react-inline-elements'],
         },
         exclude: /(node_modules)/,
       },
