@@ -95,18 +95,21 @@ Voice: Think of it as a comment.
 
   - [ ] Basic topic feature
     - [x] add topic database controller
+    - [X] get topic database controller
     - [ ] get topics database controller 
     - [x] add topic react communicator
-    - [ ] get topic react communicator
+    - [x] get topic react communicator
     - [ ] / page. See topics
-    - [x] / page. Add topic (no optimistic adding)
-    - [ ] /username page. See topics	
+    - [x] / page. Add topic modal
+    - [ ] / page.
+    - [ ] /username page. See topics
 
   - [ ] Basic Voices feature
     - [ ] add voice database controller
     - [ ] get voices database controller
     - [ ] add voice react communicator
     - [ ] get voices react communicator
+    - [x] /username/slug page. See topic info
     - [ ] /username/slug page. See voices
     - [ ] /username/slug page. Add voice
 
