@@ -111,11 +111,13 @@ export default function createTopicReducer (state = initialState, action) {
     case FETCHING_CREATE_TOPIC_FAILURE :
       return {
         ...state,
+        isFetching: false,
         error: action.error,
       }
     case FETCHING_CREATE_TOPIC_SUCCESS :
       return {
         ...state,
+        isFetching: false,
         slug: action.slug,
         title: action.title,
         isModalOpen: false,

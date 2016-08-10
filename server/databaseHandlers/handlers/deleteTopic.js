@@ -4,15 +4,16 @@ import {TOPICS_TABLE_NAME, TOPICS_PARTITION_KEY, TOPICS_SORT_KEY} from '../const
 
 /*
   Removes the topic from database
-  username: {String} creator's username
+
+  creator: {String} creator's username
   slug: {String} the slug of the topic
   return: {String} 'success'
-  error: {String} the error message
+  throws: {String} the error message
  */
-function deleteTopic (username, slug) {
+function deleteTopic (creator, slug) {
   // The item we want to delete from db
   const key = { }
-  key[TOPICS_PARTITION_KEY] = username
+  key[TOPICS_PARTITION_KEY] = creator
   key[TOPICS_SORT_KEY] = slug
 
   const params = {
@@ -24,7 +25,7 @@ function deleteTopic (username, slug) {
   .then(() => 'success')
   .catch((err) => {
     logError(err)
-    return 'Unable to delete topic.'
+    throw String('Unable to delete topic.')
   })
 }
 

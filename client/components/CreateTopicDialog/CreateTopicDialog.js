@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react'
 import TextField from 'material-ui/TextField'
 import Dialog from 'material-ui/Dialog'
 import FlatButton from 'material-ui/FlatButton'
+import CircularProgress from 'material-ui/CircularProgress'
 import { getBaseUrl, isBlankString } from 'helpers/utils'
 
 CreateTopicDialog.propTypes = {
@@ -35,26 +36,29 @@ export default function CreateTopicDialog (props) {
       open = {props.isModalOpen}
       onRequestClose = {() => (props.closeCreateTopicModal())}>
 
-      <TextField
-        floatingLabelText = {'Topic Title'}
-        hintText = {'The topic of discussion'}
-        value = {props.title}
-        onChange = {(event) => (props.updateCreateTopicTitleValue(event.target.value))}
-        multiLine = {true}
-        rows = {1}
-        rowsMax = {3}/>
+      {props.isFetching
+        ? <CircularProgress />
+        : <section>
+            <TextField
+              floatingLabelText = {'Topic Title'}
+              hintText = {'The topic of discussion'}
+              value = {props.title}
+              onChange = {(event) => (props.updateCreateTopicTitleValue(event.target.value))}
+              multiLine = {true}
+              rows = {1}
+              rowsMax = {3}/>
 
-      <TextField
-        floatingLabelText = {'Topic URL Slug'}
-        hintText = {'Will be part of the URL'}
-        value = {props.slug}
-        onChange = {(event) => (props.updateCreateTopicSlugValue(event.target.value))}
-        required = {true} />
+            <TextField
+              floatingLabelText = {'Topic URL Slug'}
+              hintText = {'Will be part of the URL'}
+              value = {props.slug}
+              onChange = {(event) => (props.updateCreateTopicSlugValue(event.target.value))}
+              required = {true} />
 
-      <div>
-        <small>{` ${getBaseUrl()}/${props.username}/${props.slug}`}</small>
-      </div>
-
+            <div>
+              <small>{` ${getBaseUrl()}/${props.username}/${props.slug}`}</small>
+            </div>
+          </section>}
     </Dialog>
   )
 }
