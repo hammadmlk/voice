@@ -10,7 +10,7 @@ export default function getRoutes (checkAuth, history) {
         <IndexRoute component={HomeContainer} onEnter={checkAuth} />
         <Route path='authenticate' component={AuthenticateContainer} />
         <Route path='createTopic' component={CreateTopicDialogContainer} onEnter={checkAuth} />
-        <Route path=':username/:slug' component={TopicPageContainer} onEnter={checkAuth} />
+        <Route path=':creator/:slug' component={TopicPageContainer} onEnter={checkAuth} />
       </Route>
     </Router>
   )

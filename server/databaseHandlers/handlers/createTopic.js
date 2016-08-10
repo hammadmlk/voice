@@ -6,18 +6,18 @@ import {TOPICS_TABLE_NAME, TOPICS_PARTITION_KEY, TOPICS_SORT_KEY,
 /**
   Adds the topic to database. Throws error if the topic already exist.
 
-  username : {String} creator's username
+  creator : {String} creator's username
   slug : {String} the slug of the topic
   title : {String} The topic name (can be empty)
   return: {String} 'success'
-  error: {String} the error message
+  throws: {String} the error message
  */
-function createTopic (username, slug, title = undefined) {
+function createTopic (creator, slug, title = 'Topic Title Here') {
   // The item we want to add to db
   const item = { }
-  item[TOPICS_PARTITION_KEY] = username
+  item[TOPICS_PARTITION_KEY] = creator
   item[TOPICS_SORT_KEY] = slug
-  if (title) item[TOPICS_TITLE_KEY] = title // only set title key if title is not empty
+  item[TOPICS_TITLE_KEY] = title
   item[TOPICS_TIMESTAMP_KEY] = new Date().toISOString()
   item[TOPICS_LASTUPDATED_KEY] = new Date().toISOString()
 
@@ -31,7 +31,7 @@ function createTopic (username, slug, title = undefined) {
   .then(() => 'success')
   .catch((err) => {
     logError(err)
-    return 'Unable to create topic. Is the slug already taken?'
+    throw String('Unable to create topic. Is the slug already taken?')
   })
 }
 
