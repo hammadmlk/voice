@@ -1,5 +1,5 @@
 import socketio from 'socket.io'
-import {createTopic, deleteTopic, getTopic} from '../databaseHandlers'
+import {createTopic, deleteTopic, getTopic, getVoices, addVoice} from '../databaseHandlers'
 
 /**
   Standard ack response format.
@@ -22,6 +22,20 @@ export default function attach (server) {
 
   // Listen for events and call relevant handlers
   ioServer.on('connection', function (socket) {
+    // Voices
+    socket.on('add voice', ({topicCreator, topicSlug, username, title, text, type}, ackFunc) => {
+      addVoice(topicCreator, topicSlug, username, title, text, type)
+      .then((res) => ackFunc(createAck(res)))
+      .catch((err) => ackFunc(createAck(null, err)))
+    })
+
+    socket.on('get voices', ({topicCreator, topicSlug}, ackFunc) => {
+      getVoices(topicCreator, topicSlug)
+      .then((voicesArray) => ackFunc(createAck(voicesArray)))
+      .catch((err) => ackFunc(createAck(null, err)))
+    })
+
+    // Topics
     socket.on('create topic', ({creator, slug, title}, ackFunc) => {
       createTopic(creator, slug, title)
       .then((res) => ackFunc(createAck(res)))
@@ -40,6 +54,7 @@ export default function attach (server) {
       .catch((err) => ackFunc(createAck(null, err)))
     })
 
+    // Errors
     socket.on('error', (err) => console.error(err))
   })
 
