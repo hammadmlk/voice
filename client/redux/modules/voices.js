@@ -1,28 +1,20 @@
-const FETCHING_VOICES = 'FETCHING_VOICES'
-const FETCHING_VOICES_FAILURE = 'FETCHING_VOICES_FAILURE'
-const FETCHING_VOICES_SUCCESS = 'FETCHING_VOICES_SUCCESS'
+const RESET_VOICES = 'RESET_VOICES'
+const ADD_VOICES = 'ADD_VOICES'
 
 //
 // Action Creators
 //
 
-export function fetchingVoices () {
+export function resetVoices () {
   return {
-    type: FETCHING_VOICES,
+    type: RESET_VOICES,
   }
 }
 
-export function fetchingVoicesFailure (error) {
+export function addVoices (voices) {
   return {
-    type: FETCHING_VOICES,
-    error: error,
-  }
-}
-
-export function fetchingVoicesSuccess (voicesMap) {
-  return {
-    type: FETCHING_VOICES,
-    voicesMap: voicesMap,
+    type: ADD_VOICES,
+    voices: voices,
   }
 }
 
@@ -35,30 +27,17 @@ export function fetchingVoicesSuccess (voicesMap) {
 //
 
 const initialState = {
-  isFetching: false,
-  error: '',
-  // [voiceIfentifier]: voiceObject, // see reducer case FETCHING_VOICES_SUCCESS
+  // [voiceIfentifier]: voiceObject, // see reducer case ADD_VOICES
 }
 
 export default function voicesReducer (state = initialState, action) {
   switch (action.type) {
-    case FETCHING_VOICES :
+    case RESET_VOICES :
+      return initialState
+    case ADD_VOICES :
       return {
         ...state,
-        isFetching: true,
-      }
-    case FETCHING_VOICES_FAILURE :
-      return {
-        ...state,
-        isFetching: false,
-        error: action.error,
-      }
-    case FETCHING_VOICES_SUCCESS :
-      return {
-        ...state,
-        ...action.voicesMap,
-        isFetching: false,
-        error: '',
+        ...action.voices,
       }
     default :
       return state
@@ -67,18 +46,4 @@ export default function voicesReducer (state = initialState, action) {
 
 //
 // End Reducers
-//
-
-//
-// Thunks
-//
-
-export function fetchAndHandleVoices (topicCreator, topicSlug) {
-  return function (dispatch, getState) {
-    // TODO: implementation pending
-  }
-}
-
-//
-// End Thunks
 //

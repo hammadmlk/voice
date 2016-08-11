@@ -1,34 +1,55 @@
-import React from 'react'
-import {Card, CardActions, CardHeader, CardTitle, CardText} from 'material-ui/Card'
-import FlatButton from 'material-ui/FlatButton'
-
-const sampleCard = (
-  <Card containerStyle={{marginBottom: '1rem'}}>
-    <CardHeader
-      title='URL Avatar'
-      subtitle='Subtitle'/>
-    <CardTitle title='Card title' subtitle='Card subtitle' />
-    <CardText>
-      {`Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-      Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-      Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.`}
-    </CardText>
-    <CardActions>
-      <FlatButton label='Action1' />
-    </CardActions>
-  </Card>)
+import React, {PropTypes} from 'react'
+import { bindActionCreators } from 'redux'
+import * as voiceFeedActions from 'redux/modules/voiceFeed'
+import { connect } from 'react-redux'
+import { VoiceContainer } from 'containers'
 
 const VoiceFeedContainer = React.createClass({
+  propTypes: {
+    isFetching: PropTypes.bool.isRequired,
+    error: PropTypes.string.isRequired,
+    topicCreator: PropTypes.string.isRequired,
+    topicSlug: PropTypes.string.isRequired,
+    voiceIdentifiers: PropTypes.array.isRequired,
+    fetchAndHandleVoices: PropTypes.func.isRequired,
+  },
+  componentDidMount () {
+    this.props.fetchAndHandleVoices(this.props.topicCreator, this.props.topicSlug)
+  },
+  componentWillReceiveProps (nextProps) {
+    const newTopicCreator = nextProps.topicCreator
+    const newTopicSlug = nextProps.topicSlug
+
+    // if the topicCreator or topicSlug props are going to change, we want to call fetchAndHandleVoices again.
+    if (this.props.topicCreator !== newTopicCreator || this.props.topicSlug !== newTopicSlug) {
+      this.props.fetchAndHandleVoices(newTopicCreator, newTopicSlug)
+    }
+  },
   render () {
+    const voices = this.props.voiceIdentifiers.map((voiceIdentifier) => {
+      return <VoiceContainer voiceIdentifier={voiceIdentifier} key={voiceIdentifier}/>
+    })
+
     return (
       <div>
-        {sampleCard}
-        {sampleCard}
-        {sampleCard}
-        {sampleCard}
+        {voices}
       </div>
     )
   },
 })
-export default VoiceFeedContainer
+
+function mapStateToProps ({voiceFeed}, props) {
+  return {
+    isFetching: voiceFeed.isFetching,
+    error: voiceFeed.error,
+    topicCreator: props.topicCreator,
+    topicSlug: props.topicSlug,
+    voiceIdentifiers: voiceFeed.voiceIdentifiers,
+  }
+}
+
+function mapDispatchToProps (dispatch) {
+  return bindActionCreators(voiceFeedActions, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(VoiceFeedContainer)
