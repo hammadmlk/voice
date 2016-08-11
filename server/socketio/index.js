@@ -31,7 +31,7 @@ export default function attach (server) {
 
     socket.on('get voices', ({topicCreator, topicSlug}, ackFunc) => {
       getVoices(topicCreator, topicSlug)
-      .then((voicesArray) => ackFunc(createAck(voicesArray)))
+      .then((voices) => ackFunc(createAck(voices)))
       .catch((err) => ackFunc(createAck(null, err)))
     })
 

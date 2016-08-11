@@ -19,9 +19,11 @@ function getVoices (topicCreator, topicSlug) {
     },
   }
 
-  document.query(params).promise()
+  return document.query(params).promise()
   .then((response) => {
-    return response.Items
+    const voices = {}
+    response.Items.map((voice) => (voices[voice.voiceIdentifier] = voice))
+    return voices
   })
   .catch((err) => {
     logError(err)
