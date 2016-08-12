@@ -2,6 +2,7 @@ import React, {PropTypes} from 'react'
 import { bindActionCreators } from 'redux'
 import * as voiceFeedActions from 'redux/modules/voiceFeed'
 import { connect } from 'react-redux'
+import LinearProgress from 'material-ui/LinearProgress'
 import { VoiceContainer } from 'containers'
 
 const VoiceFeedContainer = React.createClass({
@@ -26,6 +27,16 @@ const VoiceFeedContainer = React.createClass({
     }
   },
   render () {
+    // Loading
+    if (this.props.isFetching) {
+      return <LinearProgress />
+    }
+
+    // Error
+    if (this.props.error) {
+      return (<div/>)
+    }
+
     const voices = this.props.voiceIdentifiers.map((voiceIdentifier) => {
       return <VoiceContainer voiceIdentifier={voiceIdentifier} key={voiceIdentifier}/>
     })
