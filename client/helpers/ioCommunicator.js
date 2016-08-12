@@ -14,6 +14,12 @@ function emitPromise (event, data) {
   })
 }
 
+// Voices
+export function getVoices (topicCreator, topicSlug) {
+  return emitPromise('get voices', {topicCreator, topicSlug})
+}
+
+// Topics
 export function createTopic (creator, slug, title) {
   return emitPromise('create topic', {creator, slug, title})
 }

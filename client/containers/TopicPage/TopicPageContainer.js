@@ -16,7 +16,7 @@ const TopicPageContainer = React.createClass({
             </div>
           </GridColumn>
           <GridColumn s={12} l={8}>
-            <VoiceFeedContainer />
+            <VoiceFeedContainer topicCreator={this.props.routeParams.creator} topicSlug={this.props.routeParams.slug} />
           </GridColumn>
         </GridRow>
       </GridCan>

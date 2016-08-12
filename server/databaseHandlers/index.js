@@ -1,3 +1,5 @@
 export createTopic from './handlers/createTopic'
 export deleteTopic from './handlers/deleteTopic'
 export getTopic from './handlers/getTopic'
+export addVoice from './handlers/addVoice'
+export getVoices from './handlers/getVoices'
