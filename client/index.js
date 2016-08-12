@@ -7,7 +7,7 @@ import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import { checkIfAuthed } from 'helpers/authenticator'
 import { routerReducer, syncHistoryWithStore } from 'react-router-redux'
-import { hashHistory } from 'react-router'
+import { browserHistory } from 'react-router'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 
@@ -22,7 +22,7 @@ const store = createStore(
   )
 )
 
-const history = syncHistoryWithStore(hashHistory, store)
+const history = syncHistoryWithStore(browserHistory, store)
 
 function checkAuth (nextState, replace) {
   const isAuthed = checkIfAuthed(store)
