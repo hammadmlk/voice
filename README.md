@@ -110,9 +110,9 @@ slug: a url friendly identifier for a topic. Together, creator and slug uniquely
     - [x] add voice database controller
     - [x] get voices database controller
     - [ ] add voice react communicator
-    - [ ] get voices react communicator
+    - [x] get voices react communicator
     - [x] /creator/slug page. See topic info
-    - [ ] /creator/slug page. See voices
+    - [x] /creator/slug page. See voices
     - [ ] /creator/slug page. Add voice
     - [ ] support pagination on getVoices. dynamodb paginates results at 1MB i.e about 4k to 8k voices
 
