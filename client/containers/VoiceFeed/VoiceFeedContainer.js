@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux'
 import * as voiceFeedActions from 'redux/modules/voiceFeed'
 import { connect } from 'react-redux'
 import LinearProgress from 'material-ui/LinearProgress'
-import { VoiceContainer } from 'containers'
+import { VoiceContainer, CreateVoiceContainer } from 'containers'
 
 const VoiceFeedContainer = React.createClass({
   propTypes: {
@@ -43,6 +43,7 @@ const VoiceFeedContainer = React.createClass({
 
     return (
       <div>
+        <CreateVoiceContainer topicCreator={this.props.topicCreator} topicSlug={this.props.topicSlug}/>
         {voices}
       </div>
     )

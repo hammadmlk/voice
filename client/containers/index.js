@@ -5,6 +5,7 @@ export CreateTopicDialogContainer from './CreateTopicDialog/CreateTopicDialogCon
 export TopicContainer from './Topic/TopicContainer'
 export VoiceFeedContainer from './VoiceFeed/VoiceFeedContainer'
 export VoiceContainer from './Voice/VoiceContainer'
+export CreateVoiceContainer from './CreateVoice/CreateVoiceContainer'
 
 // Page Layouts
 export TopicPageContainer from './TopicPage/TopicPageContainer'
