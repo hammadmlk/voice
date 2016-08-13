@@ -17,7 +17,6 @@ export const VOICES_PARTITION_KEY = 'topicIdentifier'
 export const VOICES_SORT_KEY = 'voiceIdentifier'
 export const VOICES_TIMESTAMP_KEY = 'timestamp'
 export const VOICES_USERNAME_KEY = 'username'
-export const VOICES_TITLE_KEY = 'title'
 export const VOICES_TEXT_KEY = 'text'
 export const VOICES_TYPE_KEY = 'type'
 

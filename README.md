@@ -55,7 +55,6 @@ slug: a url friendly identifier for a topic. Together, creator and slug uniquely
 		
 		timestamp string 
 		username  string 
-		title string
 		text string
 		upvotedBy arrayOfString | username
 		heardBy arrayOfString | username

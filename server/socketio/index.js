@@ -23,8 +23,8 @@ export default function attach (server) {
   // Listen for events and call relevant handlers
   ioServer.on('connection', function (socket) {
     // Voices
-    socket.on('add voice', ({topicCreator, topicSlug, username, title, text, type}, ackFunc) => {
-      addVoice(topicCreator, topicSlug, username, title, text, type)
+    socket.on('add voice', ({topicCreator, topicSlug, username, text, type}, ackFunc) => {
+      addVoice(topicCreator, topicSlug, username, text, type)
       .then((res) => ackFunc(createAck(res)))
       .catch((err) => ackFunc(createAck(null, err)))
     })
