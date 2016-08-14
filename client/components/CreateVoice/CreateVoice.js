@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 import TextField from 'material-ui/TextField'
 import Dialog from 'material-ui/Dialog'
+import {Card, CardText} from 'material-ui/Card'
 import FlatButton from 'material-ui/FlatButton'
 import CircularProgress from 'material-ui/CircularProgress'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
@@ -47,6 +48,12 @@ export default function CreateVoice (props) {
   ]
   return (
     <div>
+      <Card containerStyle={{marginBottom: '1rem'}} onClick = {() => props.openModal()} >
+        <CardText>
+          <TextField hintText = {'Say something?'} fullWidth = {true} />
+        </CardText>
+      </Card>
+
       <FloatingActionButton onClick={() => props.openModal()} style={createButtonStyle}>
         <CreateIcon/>
       </FloatingActionButton>
@@ -67,6 +74,7 @@ export default function CreateVoice (props) {
               hintText = {'Speak your mind'}
               value = {props.text}
               onChange = {(event) => (props.updateTextValue(event.target.value))}
+              autoFocus = {true}
               fullWidth = {true}
               multiLine = {true} />
           </section>}
