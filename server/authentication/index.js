@@ -1,10 +1,13 @@
-const X_FORWARDED_USER = 'x-forwarded-user'
+const AUTHENTICATED_USERNAME_HEADER_NAME = process.env.AUTHENTICATED_USERNAME_HEADER_NAME
 
 /**
+  Gets the username of the authenticated user from the socket request header
+
+  return: {string} the username. Or 'nobody' if unauthenticated.
 */
 export function getAuthenticatedUserFromSocket (socket) {
   try {
-    const sentryUserString = socket.request.headers[X_FORWARDED_USER]
+    const sentryUserString = socket.request.headers[AUTHENTICATED_USERNAME_HEADER_NAME]
     const username = getUsernameFromSentryUserString(sentryUserString)
     return username
   } catch (e) {
@@ -12,8 +15,6 @@ export function getAuthenticatedUserFromSocket (socket) {
     return 'nobody'
   }
 }
-
-// x-forwarded-user': 'hammadm@ANT.AMAZON.COM
 
 /**
   Extracts the username from a sentry user string.
@@ -24,7 +25,6 @@ export function getAuthenticatedUserFromSocket (socket) {
   return: {string} the username. Example: 'hammadm'. Empty string if username if not found
   throws: Error if username is not found.
 */
-
 function getUsernameFromSentryUserString (sentryUserString) {
   const username = sentryUserString.substr(0, sentryUserString.indexOf('@'))
   if (!username) {

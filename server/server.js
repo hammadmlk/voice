@@ -3,7 +3,8 @@ import socketio from './socketio'
 
 const __PROD__ = process.env.NODE_ENV === 'production'
 const __TEST__ = process.env.NODE_ENV === 'test'
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT
+const HOST = process.env.HOST
 
 const app = express()
 
@@ -35,5 +36,5 @@ if (__PROD__ || __TEST__) {
   app.get('*', (req, res) => res.sendFile(config.output.path + '/index.html'))
 }
 
-const server = app.listen(PORT, () => console.info('listening on port: ' + PORT))
+const server = app.listen(PORT, HOST, () => console.info('listening on port: ' + PORT))
 socketio(server)
