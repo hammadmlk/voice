@@ -20,10 +20,6 @@ export default function attach (server) {
   // attach to the given server
   const ioServer = socketio(server)
 
-  ioServer.set('authorization', function (handshakeData, accept) {
-    console.log(handshakeData.headers)
-  })
-
   // Listen for events and call relevant handlers
   ioServer.on('connection', function (socket) {
     // Voices
