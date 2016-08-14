@@ -33,6 +33,13 @@ When Emilie addresses a concern, she wants it to reach everyone. She find that o
 # Tech Notes
 This is where I dump my thoughts on tech implementation.
 
+## Authentication
+I want make it extremely easy to integrate this app with an arbitrary authentication system. There are so many popular authentication standards out there; it impossible to support all or choose some. So to meet my goal of easy integration I have decided to keep authentication completely out of this app. 
+
+This app should be deployed behind a proxy that handles authentication and just passes the username of the authenticated user to this app. The authenticated username is passed as a header (default name 'X-Forwarded-User').
+
+This app only accepts requests from localhost. This will ensure that no external user can bypass the proxy and connect directly to the app with a fake header.
+
 ## Vocabulary
 Topic: Conversation subject.
 Voice: Think of it as a comment. 
@@ -132,7 +139,7 @@ slug: a url friendly identifier for a topic. Together, creator and slug uniquely
     - [ ] heard auto detector based on scroll
 
   - [ ] Auto username feature 
-    - [ ] openID integration so we can get username automatically
+    - [x] openID integration so we can get username automatically. (See Tech Notes)
     - [ ] readonly support for those without ID
 
   - [ ] Supporting voice feature
