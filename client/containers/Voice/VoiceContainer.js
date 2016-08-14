@@ -16,7 +16,7 @@ const VoiceContainer = React.createClass({
     return (
       <Card containerStyle={{marginBottom: '1rem'}}>
         <CardHeader title={this.props.username} />
-        <CardText style={{whiteSpace: 'pre'}}>
+        <CardText style={{whiteSpace: 'pre-wrap'}}>
           {this.props.text}
         </CardText>
         <CardActions>
