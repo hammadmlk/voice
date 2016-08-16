@@ -25,3 +25,7 @@ export const VOICE_TYPE_SUPPORTING = 'supporting'
 
 export const topicIdentifierCreator = (topicCreator, topicSlug) => (`${topicCreator} ${topicSlug}`)
 export const voiceIdentifierCreator = (username, timestamp) => (`${timestamp} ${username} `)
+
+// Homepage Table
+export const HOMEPAGE_TABLE_NAME = 'Homepage'
+export const HOMEPAGE_PARTITION_KEY = 'section'
