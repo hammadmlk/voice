@@ -1,7 +1,7 @@
 import { dynamodb } from '../dbClient'
 import {TOPICS_TABLE_NAME, TOPICS_PARTITION_KEY, TOPICS_SORT_KEY,
         VOICES_TABLE_NAME, VOICES_PARTITION_KEY, VOICES_SORT_KEY,
-        HOMEPAGE_TABLE_NAME, HOMEPAGE_PARTITION_KEY} from '../constants'
+        TOPIC_GROUP_TABLE_NAME, TOPIC_GROUP_PARTITION_KEY} from '../constants'
 
 // Create Topics Table
 createTable(TOPICS_TABLE_NAME, TOPICS_PARTITION_KEY, TOPICS_SORT_KEY)
@@ -9,8 +9,8 @@ createTable(TOPICS_TABLE_NAME, TOPICS_PARTITION_KEY, TOPICS_SORT_KEY)
 // Create Voices Table
 createTable(VOICES_TABLE_NAME, VOICES_PARTITION_KEY, VOICES_SORT_KEY)
 
-// Create Homepage Table
-createTable(HOMEPAGE_TABLE_NAME, HOMEPAGE_PARTITION_KEY)
+// Create TopicGroup Table
+createTable(TOPIC_GROUP_TABLE_NAME, TOPIC_GROUP_PARTITION_KEY)
 
 /*
   Create a table with the provided name. The table with have a composite primary key composed of PartitionKey and SortKey.
