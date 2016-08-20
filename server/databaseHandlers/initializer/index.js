@@ -1,3 +1,3 @@
 require('babel-register')
 require('dotenv').config()
-require('./initialize.js')
+require('./createTables.js')
