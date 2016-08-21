@@ -1,5 +1,5 @@
 import socketio from 'socket.io'
-import {createTopic, deleteTopic, getTopic, getVoices, addVoice} from '../databaseHandlers'
+import {createTopic, deleteTopic, getTopic, getTopics, getTopicGroup, getVoices, addVoice} from '../databaseHandlers'
 import {getAuthenticatedUserFromSocket} from '../authentication'
 
 // Attach to the provided server, listen for events and call the relevant handler
@@ -50,6 +50,14 @@ export default function attach (server) {
       }
       deleteTopic(creator, slug)
       .then((res) => ackFunc(successAck(res)))
+      .catch((err) => ackFunc(failureAck(err)))
+    })
+
+    // Topic Groups
+    socket.on('get topic group', (name, ackFunc) => {
+      getTopicGroup(name)
+      .then((topicIdentifierList) => getTopics(topicIdentifierList))
+      .then((topicList) => ackFunc(successAck(topicList)))
       .catch((err) => ackFunc(failureAck(err)))
     })
 

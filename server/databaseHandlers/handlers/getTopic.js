@@ -10,29 +10,54 @@ import {TOPICS_TABLE_NAME, TOPICS_PARTITION_KEY, TOPICS_SORT_KEY} from '../const
   return: {Object} the topic object
   throws: {String} the error message
  */
-function getTopic (creator, slug) {
-  // The key we want to get from db
-  const key = { }
-  key[TOPICS_PARTITION_KEY] = creator
-  key[TOPICS_SORT_KEY] = slug
-
-  const params = {
-    TableName: TOPICS_TABLE_NAME,
-    Key: key,
-  }
-
-  return document.get(params).promise()
+export default function getTopic (creator, slug) {
+  return getTopics([{creator, slug}])
   .then((response) => {
-    if (typeof response.Item !== 'undefined') {
-      return response.Item
+    if (Array.isArray(response) && response.length > 0) {
+      return response[0]
     }
     const notFoundErr = {statusCode: 400, message: 'The requested topic does not exist.'}
+    logError(notFoundErr)
     throw notFoundErr
   })
-  .catch((err) => {
-    logError(err)
+  .catch(() => {
     throw String('We were unable to find the requested topic. Does it exist?')
   })
 }
 
-export default getTopic
+/**
+  Gets the topics from database. Will ignore any topics that do not exist.
+
+  topicIdentifierList: {List} Array of {creator: ..., slug: ... }
+  return: {List} the list of topic objects. Can be an empty array.
+  throws: {String} the error message
+ */
+export function getTopics (topicIdentifierList) {
+  if (Array.isArray(topicIdentifierList) && topicIdentifierList.length === 0) {
+    return Promise.resolve([])
+  }
+
+  const keys = []
+
+  topicIdentifierList.forEach(({creator, slug}) => {
+    const key = { }
+    key[TOPICS_PARTITION_KEY] = creator
+    key[TOPICS_SORT_KEY] = slug
+    keys.push(key)
+  })
+
+  const params = {
+    RequestItems: {
+      [TOPICS_TABLE_NAME]: {
+        Keys: keys,
+      },
+    },
+  }
+
+  return document.batchGet(params).promise()
+  .then((response) => response.Responses[TOPICS_TABLE_NAME])
+  .catch((err) => {
+    logError(err)
+    throw String('We were unable to retrieve the requested topics. Something is wrong on our side.')
+  })
+}
