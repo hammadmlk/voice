@@ -1,6 +1,3 @@
-require('babel-register')
-require('dotenv').config()
-
 import { dynamodb } from '../dbClient'
 import {TOPICS_TABLE_NAME, TOPICS_PARTITION_KEY, TOPICS_SORT_KEY,
         VOICES_TABLE_NAME, VOICES_PARTITION_KEY, VOICES_SORT_KEY,
