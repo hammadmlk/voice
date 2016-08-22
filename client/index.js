@@ -6,7 +6,7 @@ import * as reducers from 'redux/modules'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import { checkIfAuthed } from 'helpers/authenticator'
-import { routerReducer, syncHistoryWithStore } from 'react-router-redux'
+import { routerReducer, syncHistoryWithStore, routerMiddleware } from 'react-router-redux'
 import { browserHistory } from 'react-router'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import injectTapEventPlugin from 'react-tap-event-plugin'
@@ -18,6 +18,7 @@ const store = createStore(
   combineReducers({...reducers, routing: routerReducer}),
   compose(
     applyMiddleware(thunk),
+    applyMiddleware(routerMiddleware(browserHistory)),
     window.devToolsExtension ? window.devToolsExtension() : (f) => f
   )
 )
