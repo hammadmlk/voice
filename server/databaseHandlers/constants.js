@@ -25,3 +25,11 @@ export const VOICE_TYPE_SUPPORTING = 'supporting'
 
 export const topicIdentifierCreator = (topicCreator, topicSlug) => (`${topicCreator} ${topicSlug}`)
 export const voiceIdentifierCreator = (username, timestamp) => (`${timestamp} ${username} `)
+
+// TopicGroup Table
+export const TOPIC_GROUP_TABLE_NAME = 'TopicGroup'
+export const TOPIC_GROUP_PARTITION_KEY = 'name'
+export const TOPIC_GROUP_TOPICS_KEY = 'topics'
+
+export const TOPIC_GROUP_RECENT_TOPICS = 'recentTopics'
+export const TOPIC_GROUP_RECENT_TOPICS_NUMBER = 10

@@ -162,7 +162,7 @@ Edit dynamoDB configurations in '.env' file so they points to a valid DB.
 
 NOTE: For a better development experience you can setup a local dynamoDB instance. See: https://aws.amazon.com/blogs/aws/dynamodb-local-for-desktop-development/
 
-Once the '.env' file points to a valid dynamoDB, initialize required tables
+Once the '.env' file points to a valid dynamoDB, create required tables and initialize table values:
 
     node ./server/databaseHandlers/initializer
 
