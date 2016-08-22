@@ -31,3 +31,8 @@ export function createTopic (creator, slug, title) {
 export function getTopic (creator, slug) {
   return emitPromise('get topic', {creator, slug})
 }
+
+// Topic Groups
+export function getTopicGroup (name) {
+  return emitPromise('get topic group', name)
+}
