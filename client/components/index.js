@@ -1,5 +1,5 @@
 export Authenticate from './Authenticate/Authenticate'
-export CreateTopicDialog from './CreateTopicDialog/CreateTopicDialog'
+export CreateTopic from './CreateTopic/CreateTopic'
 export CreateVoice from './CreateVoice/CreateVoice'
 export HomePageHeader from './HomePageHeader/HomePageHeader'
 

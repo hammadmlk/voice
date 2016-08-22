@@ -1,5 +1,5 @@
 export auth from './auth'
-export createTopicDialog from './createTopicDialog'
+export createTopic from './createTopic'
 export topic from './topic'
 export snackbar from './snackbar'
 export voices from './voices'
