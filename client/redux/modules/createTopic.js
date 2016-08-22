@@ -73,7 +73,7 @@ function fetchingCreateTopicSuccess (slug, title) {
 //
 
 const initialState = {
-  isModalOpen: true,
+  isModalOpen: false,
   slug: '',
   title: '',
   isFetching: false,
