@@ -9,6 +9,7 @@ import {cyan500, red500} from 'material-ui/styles/colors'
 const whiteColorStyle = {color: 'white'}
 const cyanBackgroundStyle = {backgroundColor: cyan500}
 const redBackgroundStyle = {backgroundColor: red500}
+const wordBreakStyle = {wordBreak: 'break-word'}
 
 const TopicContainer = React.createClass({
   propTypes: {
@@ -61,7 +62,7 @@ const TopicContainer = React.createClass({
           titleStyle= {whiteColorStyle} />
         <CardTitle
           title= {this.props.title}
-          titleStyle={whiteColorStyle} />
+          titleStyle={{...whiteColorStyle, ...wordBreakStyle}} />
       </Card>
     )
   },
