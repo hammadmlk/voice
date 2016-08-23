@@ -38,9 +38,8 @@ const TopicGroupContainer = React.createClass({
 
     // Normal
     const topicListItems = this.props.topicList.map((topic, index) =>
-      <div>
+      <div key= {index}>
         <ListItem
-          key= {index}
           onClick={() => this.props.gotoTopic(topic.creator, topic.slug)}
           primaryText={topic.title}
           secondaryText={`${topic.creator}/${topic.slug}`}
