@@ -1,7 +1,6 @@
 import React, {PropTypes} from 'react'
 import { bindActionCreators } from 'redux'
-import * as topicGroupsActions from 'redux/modules/topicGroups'
-import { initialGroupState } from 'redux/modules/topicGroups'
+import {fetchAndHandleTopicGroup, gotoTopic, initialGroupState} from 'redux/modules/topicGroups'
 import { connect } from 'react-redux'
 
 import {List, ListItem} from 'material-ui/List'
@@ -74,7 +73,7 @@ function mapStateToProps ({topicGroups}, props) {
 }
 
 function mapDispatchToProps (dispatch) {
-  return bindActionCreators(topicGroupsActions, dispatch)
+  return bindActionCreators({fetchAndHandleTopicGroup, gotoTopic}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(TopicGroupContainer)
