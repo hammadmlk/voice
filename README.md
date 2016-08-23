@@ -104,7 +104,7 @@ slug: a url friendly identifier for a topic. Together, creator and slug uniquely
   - [ ] Basic topic feature
     - [x] add topic database controller
     - [X] get topic database controller
-    - [ ] get topics database controller 
+    - [x] get topics database controller 
     - [x] add topic react communicator
     - [x] get topic react communicator
     - [x] / page. See topics
