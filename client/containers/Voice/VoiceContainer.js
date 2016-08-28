@@ -1,7 +1,9 @@
-import React, {PropTypes} from 'react'
+import React, { PropTypes } from 'react'
+import { bindActionCreators } from 'redux'
+import { showResponses as showResponsesActionCreator } from 'redux/modules/voices'
 import { connect } from 'react-redux'
-import {Card} from 'material-ui/Card'
-import {List} from 'material-ui/List'
+import { Card } from 'material-ui/Card'
+import { List } from 'material-ui/List'
 import Divider from 'material-ui/Divider'
 import { Voice } from 'components'
 import { CreateVoiceContainer } from 'containers'
@@ -19,6 +21,11 @@ const VoiceContainerUnConnected = React.createClass({
     text: PropTypes.string.isRequired,
     type: PropTypes.oneOf(['primary', 'response']),
     responseVoiceIdentifiers: PropTypes.array.isRequired,
+    showResponses: PropTypes.bool.isRequired,
+    dispatchShowResponses: PropTypes.func.isRequired,
+  },
+  handleShowResponses () {
+    this.props.dispatchShowResponses(this.props.voiceIdentifier)
   },
   render () {
     if (this.props.type === 'primary') {
@@ -29,18 +36,23 @@ const VoiceContainerUnConnected = React.createClass({
                   topicCreator={this.props.topicCreator}
                   topicSlug={this.props.topicSlug}/>
       })
-
+      const display = this.props.showResponses ? 'block' : 'none'
       return (
         <Card containerStyle={{marginBottom: '1rem'}}>
-          <Voice username={this.props.username} text={this.props.text} type={this.props.type}/>
-          <Divider/>
-            {responses.length !== 0 ? <List>{responses}</List> : null}
-          <Divider/>
-          <CreateVoiceContainer
-            type='response'
-            topicCreator={this.props.topicCreator}
-            topicSlug={this.props.topicSlug}
-            primaryVoiceIdentifier={this.props.voiceIdentifier}/>
+          <Voice username={this.props.username}
+            text={this.props.text}
+            type={this.props.type}
+            handleShowResponses={this.handleShowResponses}/>
+          <div style={{display: display}}>
+            <Divider/>
+              {responses.length !== 0 ? <List>{responses}</List> : null}
+            <Divider/>
+            <CreateVoiceContainer
+              type='response'
+              topicCreator={this.props.topicCreator}
+              topicSlug={this.props.topicSlug}
+              primaryVoiceIdentifier={this.props.voiceIdentifier}/>
+          </div>
         </Card>
       )
     } else {
@@ -50,7 +62,7 @@ const VoiceContainerUnConnected = React.createClass({
 })
 
 function mapStateToProps ({voices}, props) {
-  const {topicIdentifier, voiceIdentifier, timestamp, username, text, type, responseVoiceIdentifiers} = voices[props.voiceIdentifier]
+  const {topicIdentifier, voiceIdentifier, timestamp, username, text, type, responseVoiceIdentifiers, showResponses} = voices[props.voiceIdentifier]
   return {
     topicIdentifier,
     voiceIdentifier,
@@ -59,7 +71,11 @@ function mapStateToProps ({voices}, props) {
     text,
     type,
     responseVoiceIdentifiers,
+    showResponses: showResponses || false,
   }
 }
-const VoiceContainer = connect(mapStateToProps)(VoiceContainerUnConnected)
+function mapDispatchToProps (dispatch) {
+  return bindActionCreators({dispatchShowResponses: showResponsesActionCreator}, dispatch)
+}
+const VoiceContainer = connect(mapStateToProps, mapDispatchToProps)(VoiceContainerUnConnected)
 export default VoiceContainer

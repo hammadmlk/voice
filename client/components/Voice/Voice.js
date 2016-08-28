@@ -9,6 +9,7 @@ Voice.propTypes = {
   username: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
   type: PropTypes.oneOf(['primary', 'response']),
+  handleShowResponses: PropTypes.func,
 }
 
 export default function Voice (props) {
@@ -20,7 +21,7 @@ export default function Voice (props) {
             {props.text}
           </CardText>
           <CardActions >
-            <IconButton>
+            <IconButton onTouchTap={() => props.handleShowResponses()}>
               <CommentIcon/>
             </IconButton>
           </CardActions>
