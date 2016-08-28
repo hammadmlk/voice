@@ -38,12 +38,19 @@ const VoiceFeedContainer = React.createClass({
     }
 
     const voices = this.props.voiceIdentifiers.map((voiceIdentifier) => {
-      return <VoiceContainer voiceIdentifier={voiceIdentifier} key={voiceIdentifier}/>
+      return <VoiceContainer
+                voiceIdentifier={voiceIdentifier}
+                key={voiceIdentifier}
+                topicCreator={this.props.topicCreator}
+                topicSlug={this.props.topicSlug}/>
     })
 
     return (
       <div>
-        <CreateVoiceContainer topicCreator={this.props.topicCreator} topicSlug={this.props.topicSlug}/>
+        <CreateVoiceContainer
+          type='primary'
+          topicCreator={this.props.topicCreator}
+          topicSlug={this.props.topicSlug} />
         {voices}
       </div>
     )

@@ -1,35 +1,56 @@
 import React, {PropTypes} from 'react'
 import { connect } from 'react-redux'
-import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card'
-import FlatButton from 'material-ui/FlatButton'
+import {Card} from 'material-ui/Card'
+import {List} from 'material-ui/List'
+import Divider from 'material-ui/Divider'
+import { Voice } from 'components'
+import { CreateVoiceContainer } from 'containers'
 
-const VoiceContainer = React.createClass({
+const VoiceContainerUnConnected = React.createClass({
   propTypes: {
-    topicIdentifier: PropTypes.string.isRequired,
+    topicCreator: PropTypes.string.isRequired,
+    topicSlug: PropTypes.string.isRequired,
     voiceIdentifier: PropTypes.string.isRequired,
+
+    // mapStateToProps
+    topicIdentifier: PropTypes.string.isRequired,
     timestamp: PropTypes.number.isRequired,
     username: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
-    type: PropTypes.oneOf(['primary', 'supporting']),
+    type: PropTypes.oneOf(['primary', 'response']),
+    responseVoiceIdentifiers: PropTypes.array.isRequired,
   },
   render () {
-    return (
-      <Card containerStyle={{marginBottom: '1rem'}}>
-        <CardHeader title={this.props.username} />
-        <CardText style={{whiteSpace: 'pre-wrap'}}>
-          {this.props.text}
-        </CardText>
-        <CardActions>
-          <FlatButton label='Action1' />
-          <FlatButton label='Action2' />
-        </CardActions>
-      </Card>
-    )
+    if (this.props.type === 'primary') {
+      const responses = this.props.responseVoiceIdentifiers.map((responseVoiceIdentifier) => {
+        return <VoiceContainer
+                  voiceIdentifier={responseVoiceIdentifier}
+                  key={responseVoiceIdentifier}
+                  topicCreator={this.props.topicCreator}
+                  topicSlug={this.props.topicSlug}/>
+      })
+
+      return (
+        <Card containerStyle={{marginBottom: '1rem'}}>
+          <Voice username={this.props.username} text={this.props.text} type={this.props.type}/>
+          <Divider/>
+            {responses.length !== 0 ? <List>{responses}</List> : null}
+          <Divider/>
+          <CreateVoiceContainer
+            type='response'
+            topicCreator={this.props.topicCreator}
+            topicSlug={this.props.topicSlug}
+            primaryVoiceIdentifier={this.props.voiceIdentifier}/>
+        </Card>
+      )
+    } else {
+      return <Voice username={this.props.username} text={this.props.text} type={this.props.type}/>
+    }
   },
 })
 
 function mapStateToProps ({voices}, props) {
-  const {topicIdentifier, voiceIdentifier, timestamp, username, text, type} = voices[props.voiceIdentifier]
+  const {topicIdentifier, voiceIdentifier, timestamp, username, text, type, responseVoiceIdentifiers} = voices[props.voiceIdentifier]
   return {
     topicIdentifier,
     voiceIdentifier,
@@ -37,7 +58,8 @@ function mapStateToProps ({voices}, props) {
     username,
     text,
     type,
+    responseVoiceIdentifiers,
   }
 }
-
-export default connect(mapStateToProps)(VoiceContainer)
+const VoiceContainer = connect(mapStateToProps)(VoiceContainerUnConnected)
+export default VoiceContainer

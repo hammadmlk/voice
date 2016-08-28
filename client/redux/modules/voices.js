@@ -1,5 +1,6 @@
 const RESET_VOICES = 'RESET_VOICES'
 const ADD_VOICE = 'ADD_VOICE'
+const ADD_VOICE_RESPONSE = 'ADD_VOICE_RESPONSE'
 const ADD_VOICES = 'ADD_VOICES'
 
 //
@@ -15,6 +16,14 @@ export function resetVoices () {
 export function addVoice (voice) {
   return {
     type: ADD_VOICE,
+    voice: voice,
+  }
+}
+
+export function addVoiceResponse (primaryVoiceIdentifier, voice) {
+  return {
+    type: ADD_VOICE_RESPONSE,
+    primaryVoiceIdentifier: primaryVoiceIdentifier,
     voice: voice,
   }
 }
@@ -46,6 +55,15 @@ export default function voicesReducer (state = initialState, action) {
       return {
         [action.voice.voiceIdentifier]: action.voice,
         ...state,
+      }
+    case ADD_VOICE_RESPONSE :
+      return {
+        ...state,
+        [action.voice.voiceIdentifier]: action.voice,
+        [action.primaryVoiceIdentifier]: {
+          ...state[action.primaryVoiceIdentifier],
+          responseVoiceIdentifiers: [...state[action.primaryVoiceIdentifier].responseVoiceIdentifiers, action.voice.voiceIdentifier],
+        },
       }
     case ADD_VOICES :
       return {
