@@ -7,7 +7,7 @@ import { VOICES_TABLE_NAME, VOICES_PARTITION_KEY, topicIdentifierCreator } from 
 
   topicCreator: {string} creator of the topic whose voices we want
   topicSlug: {string} slug of the topic whose voices we want
-  return: {array} of voice objects
+  return: {object} with voiceIdentifiers as keys
   error: {string} the error message
 */
 function getVoices (topicCreator, topicSlug) {
