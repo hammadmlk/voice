@@ -65,8 +65,8 @@ slug: a url friendly identifier for a topic. Together, creator and slug uniquely
 		text string
 		upvotedBy arrayOfString | username
 		heardBy arrayOfString | username
-		supportingVoices arrayOfObject | {voiceItentidier}
-		type string | primary or supporting
+		responseVoiceIdentifiers arrayOfStrings | {voiceItentidier}
+		type string | primary or response
 		archived bool 
 
 
@@ -90,8 +90,8 @@ slug: a url friendly identifier for a topic. Together, creator and slug uniquely
 	Add up-vote  |  topicIdentifier + voiceIdentifier + username
 	Remove up-vote  |  topicIdentifier + voiceIdentifier + username
 
-	Add supporting voice  topicIdentifier + voiceIdentifier + speaker's username
-	Remove supporting voice  topicIdentifier + voiceIdentifier
+	Add response voice  topicIdentifier + voiceIdentifier + speaker's username
+	Remove response voice  topicIdentifier + voiceIdentifier
 
 
 
@@ -142,13 +142,13 @@ slug: a url friendly identifier for a topic. Together, creator and slug uniquely
     - [x] openID integration so we can get username automatically. (See Tech Notes)
     - [ ] readonly support for those without ID
 
-  - [ ] Supporting voice feature
-    - [ ] add supporting voice database controller
-    - [ ] add supporting voice react communicator 
-    - [ ] add supporting voice UI
+  - [ ] Response voice feature
+    - [ ] add response voice database controller
+    - [ ] add response voice react communicator 
+    - [ ] add response voice UI
 
   - [ ] Create node database controller to add and retrieve data
-    - [ ] add supporting voice
+    - [ ] add response voice
     - [ ] delete voice
   - [ ] Create react database communicator to talk to node database controller	
 	

@@ -15,8 +15,8 @@ function emitPromise (event, data) {
 }
 
 // Voices
-export function addVoice (topicCreator, topicSlug, username, text, type) {
-  return emitPromise('add voice', {topicCreator, topicSlug, username, text, type})
+export function addVoice (topicCreator, topicSlug, username, text, type, primaryVoiceIdentifier) {
+  return emitPromise('add voice', {topicCreator, topicSlug, username, text, type, primaryVoiceIdentifier})
 }
 
 export function getVoices (topicCreator, topicSlug) {

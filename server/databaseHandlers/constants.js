@@ -19,12 +19,13 @@ export const VOICES_TIMESTAMP_KEY = 'timestamp'
 export const VOICES_USERNAME_KEY = 'username'
 export const VOICES_TEXT_KEY = 'text'
 export const VOICES_TYPE_KEY = 'type'
+export const VOICES_RESPONSES_KEY = 'responseVoiceIdentifiers'
 
 export const VOICE_TYPE_PRIMARY = 'primary'
-export const VOICE_TYPE_SUPPORTING = 'supporting'
+export const VOICE_TYPE_RESPONSE = 'response'
 
 export const topicIdentifierCreator = (topicCreator, topicSlug) => (`${topicCreator} ${topicSlug}`)
-export const voiceIdentifierCreator = (username, timestamp) => (`${timestamp} ${username} `)
+export const voiceIdentifierCreator = (username, timestamp) => (`${timestamp} ${username}`)
 
 // TopicGroup Table
 export const TOPIC_GROUP_TABLE_NAME = 'TopicGroup'
