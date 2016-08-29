@@ -9,6 +9,12 @@ export default function attach (server) {
 
   // Listen for events and call relevant handlers
   ioServer.on('connection', function (socket) {
+    // Auth
+    socket.on('get authenticated user', (data, ackFunc) => {
+      const authenticatedUser = {username: getAuthenticatedUserFromSocket(socket)}
+      ackFunc(successAck(authenticatedUser))
+    })
+
     // Voices
     socket.on('add voice', ({topicCreator, topicSlug, username, text, type, primaryVoiceIdentifier}, ackFunc) => {
       if (getAuthenticatedUserFromSocket(socket) !== username) {
