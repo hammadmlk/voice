@@ -4,14 +4,15 @@ Authenticate.propTypes = {
   error: PropTypes.string.isRequired,
   isFetching: PropTypes.bool.isRequired,
   isAuthed: PropTypes.bool.isRequired,
+  username: PropTypes.string.isRequired,
 }
 
-export default function Authenticate ({isAuthed, isFetching, error}) {
+export default function Authenticate ({isAuthed, isFetching, error, username}) {
   return (
     <section>
-      {isAuthed === true ? <span>{'You are authed'}</span> : null}
-      {isFetching === true ? <span>{'Authenticating...'}</span> : null}
-      {error ? <span>{error}</span> : null}
+      <div>{isAuthed === true ? `You are authenticated as ${username}` : 'You are not authenticated'}</div>
+      {isFetching === true ? <div>{'Authenticating...'}</div> : null}
+      {error ? <div>{error}</div> : null}
     </section>
   )
 }

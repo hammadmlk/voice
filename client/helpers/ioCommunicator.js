@@ -14,6 +14,11 @@ function emitPromise (event, data) {
   })
 }
 
+// Auth
+export function getAuthenticatedUser () {
+  return emitPromise('get authenticated user')
+}
+
 // Voices
 export function addVoice (topicCreator, topicSlug, username, text, type, primaryVoiceIdentifier) {
   return emitPromise('add voice', {topicCreator, topicSlug, username, text, type, primaryVoiceIdentifier})
