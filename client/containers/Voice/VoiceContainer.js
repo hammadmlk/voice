@@ -42,6 +42,7 @@ const VoiceContainerUnConnected = React.createClass({
           <Voice username={this.props.username}
             text={this.props.text}
             type={this.props.type}
+            numberOfResponses={responses.length}
             handleShowResponses={this.handleShowResponses}/>
           <div style={{display: display}}>
             <Divider/>
