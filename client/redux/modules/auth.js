@@ -41,23 +41,6 @@ export function unauth () {
 //
 
 //
-// Thunks
-//
-
-export function fetchAndHandleAuth () {
-  return function (dispatch) {
-    dispatch(fetchingAuth())
-    return getAuthenticatedUser()
-      .then((user) => dispatch(fetchingAuthSuccess(user)))
-      .catch((error) => dispatch(fetchingAuthFailure(error)))
-  }
-}
-
-//
-// End Thunks
-//
-
-//
 // Reducers
 //
 
@@ -104,4 +87,21 @@ export default function authReducer (state = initialState, action) {
 
 //
 // End Reducers
+//
+
+//
+// Thunks
+//
+
+export function fetchAndHandleAuth () {
+  return function (dispatch) {
+    dispatch(fetchingAuth())
+    return getAuthenticatedUser()
+      .then((user) => dispatch(fetchingAuthSuccess(user)))
+      .catch((error) => dispatch(fetchingAuthFailure(error)))
+  }
+}
+
+//
+// End Thunks
 //
