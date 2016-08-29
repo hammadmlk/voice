@@ -6,6 +6,7 @@ const instructions = `
 ====================
 Enter 'createTable' to create tables. 
 Enter 'initializeValues' to set initial values in tables. (do this only after the tables are created)
+Enter 'deleteTable' to delete tables.
 Enter 'close' to exit
 ====================
 `
@@ -14,7 +15,7 @@ console.info(instructions)
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
-  prompt: '[createTable or initializeValues or close] > ',
+  prompt: '[createTable or initializeValues or deleteTable or close] > ',
 })
 
 rl.prompt()
@@ -26,6 +27,9 @@ rl.on('line', (line) => {
       break
     case 'initializeValues':
       require('./initializeValues')
+      break
+    case 'deleteTable':
+      require('./deleteTables.js')
       break
     case 'close':
       rl.close()

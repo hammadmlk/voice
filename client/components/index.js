@@ -1,7 +1,8 @@
 export Authenticate from './Authenticate/Authenticate'
 export CreateTopic from './CreateTopic/CreateTopic'
-export CreateVoice from './CreateVoice/CreateVoice'
+export CreateVoiceBox from './CreateVoice/CreateVoiceBox'
 export HomePageHeader from './HomePageHeader/HomePageHeader'
+export Voice from './Voice/Voice'
 
 // Grid Layout System
 export GridCan from './Grid/GridCan'

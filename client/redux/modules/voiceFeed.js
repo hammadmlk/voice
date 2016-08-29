@@ -107,7 +107,7 @@ export function fetchAndHandleVoices (topicCreator, topicSlug) {
       .then((voices) => {
         dispatch(resetVoices()) // TODO: Can we benefit from caching ?
         dispatch(addVoices(voices))
-        dispatch(fetchingVoicesSuccess(Object.keys(voices)))
+        dispatch(fetchingVoicesSuccess(getVoiceIdentifiersOfPrimaryVoices(voices)))
       })
       .catch((error) => {
         dispatch(fetchingVoicesFailure(error))
@@ -119,3 +119,18 @@ export function fetchAndHandleVoices (topicCreator, topicSlug) {
 //
 // End Thunks
 //
+
+//
+// Helpers
+//
+
+// returns voiceIdentifiers of voices of type 'primary'
+function getVoiceIdentifiersOfPrimaryVoices (voices) {
+  const primaryVoiceIdentifiers = []
+  Object.keys(voices).forEach((voiceIdentifier) => {
+    if (voices[voiceIdentifier].type === 'primary') {
+      primaryVoiceIdentifiers.push(voiceIdentifier)
+    }
+  })
+  return primaryVoiceIdentifiers
+}

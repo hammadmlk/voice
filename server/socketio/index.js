@@ -10,12 +10,12 @@ export default function attach (server) {
   // Listen for events and call relevant handlers
   ioServer.on('connection', function (socket) {
     // Voices
-    socket.on('add voice', ({topicCreator, topicSlug, username, text, type}, ackFunc) => {
+    socket.on('add voice', ({topicCreator, topicSlug, username, text, type, primaryVoiceIdentifier}, ackFunc) => {
       if (getAuthenticatedUserFromSocket(socket) !== username) {
         ackFunc(permissionDeniedAck())
         return
       }
-      addVoice(topicCreator, topicSlug, username, text, type)
+      addVoice(topicCreator, topicSlug, username, text, type, primaryVoiceIdentifier)
       .then((res) => ackFunc(successAck(res)))
       .catch((err) => ackFunc(failureAck(err)))
     })
