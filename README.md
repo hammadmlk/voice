@@ -143,14 +143,18 @@ slug: a url friendly identifier for a topic. Together, creator and slug uniquely
     - [ ] readonly support for those without ID
 
   - [ ] Response voice feature
-    - [ ] add response voice database controller
-    - [ ] add response voice react communicator 
-    - [ ] add response voice UI
+    - [x] add response voice database controller
+    - [x] add response voice react communicator 
+    - [x] add response voice UI
 
-  - [ ] Create node database controller to add and retrieve data
-    - [ ] add response voice
+  - [ ] auto load changes made by other users
+    - [ ] add voice
     - [ ] delete voice
-  - [ ] Create react database communicator to talk to node database controller	
+    - [ ] add response voice
+    - [ ] delete response voice
+    - [ ] edit topic ?
+
+  - [x] Create react database communicator to talk to node database controller	
 	
   - [ ] Sorting Voice feature
     - [ ] do we need to do something on the backend for optimization?
