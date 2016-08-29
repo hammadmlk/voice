@@ -6,11 +6,14 @@ import { bindActionCreators } from 'redux'
 
 const AuthenticateContainer = React.createClass({
   propTypes: {
+    location: PropTypes.object.isRequired,
+    // mapStateToProps
     isFetching: PropTypes.bool.isRequired,
     error: PropTypes.string.isRequired,
     isAuthed: PropTypes.bool.isRequired,
+    username: PropTypes.string.isRequired,
+    // mapDispatchToProps
     fetchAndHandleAuth: PropTypes.func.isRequired,
-    location: PropTypes.object.isRequired,
   },
   contextTypes: {
     router: PropTypes.object.isRequired,
@@ -28,7 +31,8 @@ const AuthenticateContainer = React.createClass({
       <Authenticate
         isFetching= {this.props.isFetching}
         error={this.props.error}
-        isAuthed={this.props.isAuthed} />
+        isAuthed={this.props.isAuthed}
+        username={this.props.username} />
     )
   },
 })
@@ -38,6 +42,7 @@ function mapStateToProps ({auth}) {
     isFetching: auth.isFetching,
     error: auth.error,
     isAuthed: auth.isAuthed,
+    username: auth.username,
   }
 }
 

@@ -5,7 +5,6 @@ import { createStore, applyMiddleware, compose, combineReducers } from 'redux'
 import * as reducers from 'redux/modules'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
-import { checkIfAuthed } from 'helpers/authenticator'
 import { routerReducer, syncHistoryWithStore, routerMiddleware } from 'react-router-redux'
 import { browserHistory } from 'react-router'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
@@ -26,7 +25,7 @@ const store = createStore(
 const history = syncHistoryWithStore(browserHistory, store)
 
 function checkAuth (nextState, replace) {
-  const isAuthed = checkIfAuthed(store)
+  const isAuthed = store.getState().auth.isAuthed
   const nextPathName = nextState.location.pathname
 
   if (isAuthed !== true && nextPathName !== '/authenticate') {
